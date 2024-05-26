@@ -11,10 +11,35 @@ class User extends React.Component {
     }
 
        componentDidMount() {
+        this.setState({planet: "Jupiter"});
        console.log("Hey I am from componentDidMount");
        }
+
+       shouldComponentUpdate(nextProp, nextState) {
+        console.log("I am from shouldComponentUpdate");
+        console.log({
+            nextProp,
+            nextState
+        });
+        return true;
+       }
     
+       getSnapshotBeforeUpdate(prevProp, prevState) {
+        console.log("I am from getSnapshotBeforeUpdate");
+        console.log({
+            prevProp,
+            prevState
+        });
+        return true;
+       }
+
+       componentDidUpdate() {
+        console.log(this.state);
+       }
+
+
     render() { //logic
+        console.log("Hey I am from rendered");
         return (
             <div>
                 <h1>{this.props.name}</h1>
@@ -23,6 +48,7 @@ class User extends React.Component {
             </div>
         );
     }
+    
 }
 //State -> A set of data that an individual component holds   
 export default User;
